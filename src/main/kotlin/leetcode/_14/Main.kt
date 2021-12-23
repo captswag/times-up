@@ -16,5 +16,5 @@ fun main() {
 
     val solution = Solution()
     val output = solution.longestCommonPrefix(strings.toTypedArray())
-    print("The longest common prefix is: $output")
+    println("The longest common prefix is: $output")
 }
