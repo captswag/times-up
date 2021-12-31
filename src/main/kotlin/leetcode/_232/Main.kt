@@ -10,9 +10,8 @@ fun main() {
 
     while (loop) {
         print("1. Push\n2. Pop\n3. Peek\n4. Empty\nEnter your choice: ")
-        val choice = scanner.nextInt()
 
-        when (choice) {
+        when (scanner.nextInt()) {
             1 -> {
                 print("Enter the value to be pushed: ")
                 queue.push(scanner.nextInt())
