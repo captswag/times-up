@@ -1,6 +1,5 @@
-package leetcode._144
+package leetcode._104
 
-import extentions.displayFormatted
 import utils.TreeUtils
 import java.util.*
 
@@ -19,7 +18,7 @@ fun main() {
     val root = TreeUtils.createFromIntArray(nums)
 
     val solution = Solution()
-    val output = solution.preorderTraversal(root)
+    val output = solution.maxDepth(root)
 
-    output.displayFormatted()
+    println("The max depth of the Binary Search Tree is: $output")
 }
