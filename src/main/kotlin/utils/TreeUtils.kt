@@ -35,4 +35,22 @@ object TreeUtils {
         }
         return root
     }
+
+    fun findNode(root: TreeNode?, value: Int): TreeNode? {
+        var head = root
+        var node: TreeNode? = null
+
+        while (head != null) {
+            if (head.`val` == value) {
+                node = head
+                break
+            } else if (value < head.`val`) {
+                head = head.left
+            } else {
+                head = head.right
+            }
+        }
+
+        return node
+    }
 }
