@@ -10,3 +10,14 @@ fun IntArray.displayFormatted() {
     }
     println()
 }
+
+fun Array<String>.displayFormatted() {
+    this.forEachIndexed { index, value ->
+        if (index == 0) {
+            print(value)
+        } else {
+            print(", $value")
+        }
+    }
+    println()
+}
