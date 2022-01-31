@@ -4,19 +4,16 @@ import extentions.displayFormatted
 
 class Solution {
     fun moveZeroes(nums: IntArray): Unit {
-        var positionOfFirstZero: Int? = null
-        for (index in nums.indices) {
-            if (nums[index] == 0) {
-                positionOfFirstZero = positionOfFirstZero ?: index
-            } else {
-                if (positionOfFirstZero != null) {
-                    // Swap the value of index with positionOfFirstZero
-                    val temp = nums[positionOfFirstZero]
-                    nums[positionOfFirstZero] = nums[index]
-                    nums[index] = temp
-                    positionOfFirstZero++
-                }
+        var current = 0
+        var previous = 0 // This will be previous as we move on with the iteration (as long as there are zeroes)
+        while (current < nums.size) {
+            if (nums[current] != 0) {
+                val temp = nums[previous]
+                nums[previous] = nums[current]
+                nums[current] = temp
+                previous++
             }
+            current++
         }
         nums.displayFormatted()
     }
