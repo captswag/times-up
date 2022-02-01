@@ -32,3 +32,10 @@ fun Array<String>.displayFormatted() {
     }
     println()
 }
+
+fun CharArray.display() {
+    this.forEach { value ->
+        print(value)
+    }
+    println()
+}
