@@ -22,7 +22,7 @@ fun main() {
     val output = solution.flipAndInvertImage(image)
 
     for (rowIndex in output.indices) {
-        print("Row $rowIndex: ")
+        println("Row: $rowIndex")
         output[rowIndex].displayFormatted()
     }
 }
