@@ -1,6 +1,7 @@
 package utils
 
 import models.TreeNode
+import java.util.*
 
 object TreeUtils {
     fun createFromIntArray(nums: IntArray): TreeNode? {
@@ -48,6 +49,30 @@ object TreeUtils {
                 head = head.left
             } else {
                 head = head.right
+            }
+        }
+
+        return node
+    }
+
+    fun findNodeLast(root: TreeNode?, value: Int): TreeNode? {
+        var node: TreeNode? = null
+
+        val queue: Deque<TreeNode> = LinkedList()
+        queue.add(root)
+
+        while (queue.isNotEmpty()) {
+            val head = queue.remove()
+            if (head.`val` == value) {
+                node = head
+            }
+            val left = head.left
+            if (left != null) {
+                queue.add(left)
+            }
+            val right = head.right
+            if (right != null) {
+                queue.add(right)
             }
         }
 
