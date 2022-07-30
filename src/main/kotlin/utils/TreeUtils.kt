@@ -37,6 +37,36 @@ object TreeUtils {
         return root
     }
 
+    fun createFromIntArray(nums: Array<Int>): TreeNode? {
+        return if (nums.isNotEmpty()) {
+            var index = 0
+            val currentValue = nums[index++]
+
+            val root = TreeNode(currentValue)
+            val queue: Queue<TreeNode> = LinkedList()
+            queue.offer(root)
+            while (queue.isNotEmpty()) {
+                val current = queue.poll()
+                val diff = nums.size - index
+                if (diff >= 1) {
+                    val left = TreeNode(nums[index++])
+                    current.left = left
+                    queue.add(left)
+                    if (diff >= 2) {
+                        val right = TreeNode(nums[index++])
+                        current.right = right
+                        queue.add(right)
+                    }
+                } else {
+                    break
+                }
+            }
+            root
+        } else {
+            null
+        }
+    }
+
     fun findNode(root: TreeNode?, value: Int): TreeNode? {
         var head = root
         var node: TreeNode? = null
