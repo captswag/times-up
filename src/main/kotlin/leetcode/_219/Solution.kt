@@ -2,19 +2,17 @@ package leetcode._219
 
 class Solution {
     fun containsNearbyDuplicate(nums: IntArray, k: Int): Boolean {
-        val map = mutableMapOf<Int, Int>()
+        val set = mutableSetOf<Int>()
         var output = false
 
         for (index in nums.indices) {
-            val prevIndex = map[nums[index]]
-            if (prevIndex == null) {
-                map[nums[index]] = index
+            if (nums[index] in set) {
+                output = true
+                break
             } else {
-                if (index - prevIndex <= k) {
-                    output = true
-                    break
-                } else {
-                    map[nums[index]] = index
+                set.add(nums[index])
+                if (index - k >= 0) {
+                    set.remove(nums[index - k])
                 }
             }
         }
