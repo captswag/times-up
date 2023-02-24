@@ -52,4 +52,6 @@ class NQueen {
 
         return true
     }
+
+    fun findCurrentColumnPosition(row: IntArray): Int = row.indexOf(1)
 }

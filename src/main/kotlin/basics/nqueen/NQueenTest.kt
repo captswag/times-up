@@ -1,5 +1,6 @@
 package basics.nqueen
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
@@ -82,5 +83,35 @@ internal class NQueenTest {
         val board =
             arrayOf(intArrayOf(0, 0, 0, 1), intArrayOf(1, 0, 0, 0), intArrayOf(0, 0, 0, 0), intArrayOf(0, 0, 0, 0))
         assertFalse(nQueen.isValidPosition(board, 3, 2))
+    }
+
+    @Test
+    fun findCurrentColumnPosition1() {
+        val row = intArrayOf(0, 0, 1, 0)
+        Assertions.assertEquals(2, nQueen.findCurrentColumnPosition(row))
+    }
+
+    @Test
+    fun findCurrentColumnPosition2() {
+        val row = intArrayOf(1, 0, 0, 0)
+        Assertions.assertEquals(0, nQueen.findCurrentColumnPosition(row))
+    }
+
+    @Test
+    fun findCurrentColumnPosition3() {
+        val row = intArrayOf(0, 0, 0, 0, 0, 1, 0, 0)
+        Assertions.assertEquals(5, nQueen.findCurrentColumnPosition(row))
+    }
+
+    @Test
+    fun findCurrentColumnPosition4() {
+        val row = intArrayOf(0, 0, 0, 0, 1, 0, 1, 0)
+        Assertions.assertEquals(4, nQueen.findCurrentColumnPosition(row))
+    }
+
+    @Test
+    fun findCurrentColumnPosition5() {
+        val row = intArrayOf(0, 0, 0, 0, 0, 0, 0, 0)
+        Assertions.assertEquals(-1, nQueen.findCurrentColumnPosition(row))
     }
 }
