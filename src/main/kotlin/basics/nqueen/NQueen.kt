@@ -54,4 +54,19 @@ class NQueen {
     }
 
     fun findCurrentColumnPosition(row: IntArray): Int = row.indexOf(1)
+
+    fun printNQueen(board: Array<IntArray>) {
+        val n = board.size
+
+        for (row in 0 until n) {
+            for (column in 0 until n) {
+                if (column == 0) {
+                    print(board[row][column])
+                } else {
+                    print("    ${board[row][column]}")
+                }
+            }
+            println()
+        }
+    }
 }
