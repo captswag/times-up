@@ -13,7 +13,7 @@ fun main() {
 
     val grid = Array(rows) { IntArray(columns) }
     for (rowIndex in 0 until rows) {
-        print("Row: $rowIndex")
+        println("Row: $rowIndex")
         for (columnIndex in 0 until columns) {
             print("Enter the value at column $columnIndex: ")
             grid[rowIndex][columnIndex] = scanner.nextInt()

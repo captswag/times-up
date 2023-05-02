@@ -37,11 +37,7 @@ class Solution {
     }
 
     private fun validAndLandExists(
-        row: Int,
-        column: Int,
-        rowSize: Int,
-        columnSize: Int,
-        grid: Array<IntArray>
+        row: Int, column: Int, rowSize: Int, columnSize: Int, grid: Array<IntArray>
     ): Boolean = if (row in 0 until rowSize && column in 0 until columnSize) {
         // Valid row index
         grid[row][column] == 1
