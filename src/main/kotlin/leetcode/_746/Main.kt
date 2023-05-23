@@ -1,6 +1,6 @@
 package leetcode._746
 
-import leetcode._746.solutiontabulation.SolutionTabulation
+import leetcode._746.solutionconstantspace.SolutionConstantSpace
 import java.util.*
 
 fun main() {
@@ -15,7 +15,7 @@ fun main() {
         cost[index] = scanner.nextInt()
     }
 
-    val solution: Solution = SolutionTabulation()
+    val solution: Solution = SolutionConstantSpace()
     val output = solution.minCostClimbingStairs(cost)
 
     println("The minimum cost to reach the top of the floor is: $output")
