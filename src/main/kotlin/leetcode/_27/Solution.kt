@@ -2,22 +2,23 @@ package leetcode._27
 
 class Solution {
     fun removeElement(nums: IntArray, `val`: Int): Int {
-        var valIndex: Int? = null
+        var output = 0
 
-        for (index in nums.indices) {
-            if (nums[index] == `val`) {
-                valIndex = valIndex ?: index
+        var first = 0
+        var last = nums.size - 1
+
+        while (first <= last) {
+            if (nums[first] == `val`) {
+                val temp = nums[first]
+                nums[first] = nums[last]
+                nums[last] = temp
+                last--
             } else {
-                // Swap index with valIndex
-                if (valIndex != null) {
-                    val temp = nums[valIndex]
-                    nums[valIndex] = nums[index]
-                    nums[index] = temp
-                    valIndex++
-                }
+                first++
+                output++
             }
         }
 
-        return valIndex ?: nums.size
+        return output
     }
 }
