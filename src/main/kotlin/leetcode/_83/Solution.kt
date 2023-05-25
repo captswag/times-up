@@ -4,26 +4,16 @@ import models.ListNode
 
 class Solution {
     fun deleteDuplicates(head: ListNode?): ListNode? {
-        var searchDigit: Int? = null
-        var pointer = head
-        var prev: ListNode? = null
+        var current = head
 
-        while (pointer != null) {
-            if (searchDigit == null) {
-                searchDigit = pointer.`val`
-                prev = pointer
-                pointer = pointer.next
+        while (current?.next != null) {
+            if (current.`val` == current.next?.`val`) {
+                current.next = current.next?.next
             } else {
-                if (searchDigit == pointer.`val`) {
-                    pointer = pointer.next
-                    prev?.next = pointer
-                } else {
-                    searchDigit = pointer.`val`
-                    prev = pointer
-                    pointer = pointer.next
-                }
+                current = current.next
             }
         }
+
         return head
     }
 }
