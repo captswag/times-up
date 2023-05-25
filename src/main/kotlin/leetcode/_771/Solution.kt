@@ -2,24 +2,18 @@ package leetcode._771
 
 class Solution {
     fun numJewelsInStones(jewels: String, stones: String): Int {
-        val stonesArray = IntArray(52)
+        val jewelSet = mutableSetOf<Char>()
 
-        for (c in stones) {
-            val index = getIndex(c)
-            stonesArray[index]++
+        for (jewel in jewels) {
+            jewelSet.add(jewel)
         }
 
         var output = 0
-        for (c in jewels) {
-            val index = getIndex(c)
-            output += stonesArray[index]
+        for (stone in stones) {
+            if (stone in jewelSet) {
+                output++
+            }
         }
         return output
-    }
-
-    private fun getIndex(c: Char): Int = if (c.isUpperCase()) {
-        c - 'A'
-    } else {
-        c - 'a' + 26 // 26 is the base index
     }
 }
