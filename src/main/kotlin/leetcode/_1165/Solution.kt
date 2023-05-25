@@ -2,20 +2,18 @@ package leetcode._1165
 
 class Solution {
     fun calculateTime(keyboard: String, word: String): Int {
-        val keyboardMap = mutableMapOf<Char, Int>()
+        val keyboardArray = IntArray(26)
 
         for (index in keyboard.indices) {
-            keyboardMap[keyboard[index]] = index
+            keyboardArray[keyboard[index] - 'a'] = index
         }
 
-        var currentIndex = 0
+        var startPosition = 0
         var output = 0
         for (c in word) {
-            val cIndex = keyboardMap[c]
-            if (cIndex != null) {
-                output += Math.abs(cIndex - currentIndex)
-                currentIndex = cIndex
-            }
+            val nextPosition = keyboardArray[c - 'a']
+            output += Math.abs(nextPosition - startPosition)
+            startPosition = nextPosition
         }
         return output
     }
