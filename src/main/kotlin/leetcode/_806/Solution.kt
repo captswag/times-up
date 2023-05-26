@@ -2,22 +2,19 @@ package leetcode._806
 
 class Solution {
     fun numberOfLines(widths: IntArray, s: String): IntArray {
-        var widthCount = 0
-        var index = 0
         var lines = 1
-        while (index < s.length) {
-            val widthCurrentCharacter = widths[s[index] - 'a']
-            val widthCountNext = widthCount + widthCurrentCharacter
+        var width = 0
 
-            if (widthCountNext <= 100) {
-                index++
-                widthCount = widthCountNext
-            } else {
+        for (c in s) {
+            val pixels = widths[c - 'a']
+            width += pixels
+
+            if (width > 100) {
                 lines++
-                widthCount = 0
+                width = pixels
             }
         }
 
-        return intArrayOf(lines, widthCount)
+        return intArrayOf(lines, width)
     }
 }
