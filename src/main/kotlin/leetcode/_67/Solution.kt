@@ -2,46 +2,32 @@ package leetcode._67
 
 class Solution {
     fun addBinary(a: String, b: String): String {
-        var output = ""
-        // Both are having a size greater than or equal to 1 and the values are '0' and '1'
-        var aIndex = a.length - 1
-        var bIndex = b.length - 1
-        var carryForward = 0
+        val output = StringBuilder()
+        var aLastIndex = a.length - 1
+        var bLastIndex = b.length - 1
+        var carryOver = 0
 
-        while (aIndex >= 0 || bIndex >= 0) {
-            val aInt = if (aIndex >= 0) {
-                Character.getNumericValue(a[aIndex])
-            } else 0
-            val bInt = if (bIndex >= 0) {
-                Character.getNumericValue(b[bIndex])
-            } else 0
+        while (aLastIndex >= 0 || bLastIndex >= 0) {
+            val aBinary = getDigit(a, aLastIndex--)
+            val bBinary = getDigit(b, bLastIndex--)
+            val sum = aBinary + bBinary + carryOver
 
-            when (aInt + bInt + carryForward) {
-                0 -> {
-                    output = "0$output"
-                    carryForward = 0
-                }
-                1 -> {
-                    output = "1$output"
-                    carryForward = 0
-                }
-                2 -> {
-                    output = "0$output"
-                    carryForward = 1
-                }
-                3 -> {
-                    output = "1$output"
-                    carryForward = 1
-                }
-            }
-
-            aIndex--
-            bIndex--
+            output.append(sum % 2)
+            carryOver = sum / 2
         }
 
-        if (carryForward == 1) {
-            output = "1$output"
+        if (carryOver != 0) {
+            output.append(carryOver)
         }
-        return output
+
+        return String(output.reverse())
+    }
+
+    private fun getDigit(a: String, index: Int): Int {
+        return if (index < 0) {
+            0
+        } else {
+            return Character.getNumericValue(a[index])
+        }
     }
 }
