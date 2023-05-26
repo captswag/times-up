@@ -1,6 +1,6 @@
 package leetcode._268
 
-import leetcode._268.gauss.SolutionGauss
+import leetcode._268.xor.SolutionXor
 import java.util.*
 
 fun main() {
@@ -15,7 +15,7 @@ fun main() {
         nums[index] = scanner.nextInt()
     }
 
-    val solution: Solution = SolutionGauss()
+    val solution: Solution = SolutionXor()
     val output = solution.missingNumber(nums)
 
     println("The missing number is: $output")
