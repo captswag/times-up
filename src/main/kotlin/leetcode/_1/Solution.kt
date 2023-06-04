@@ -3,18 +3,16 @@ package leetcode._1
 class Solution {
     fun twoSum(nums: IntArray, target: Int): IntArray {
         val output = IntArray(2)
-
-        val map = HashMap<Int, Int>()
+        val map = mutableMapOf<Int, Int>()
 
         for (index in nums.indices) {
-            if (map.containsKey(nums[index])) {
-                // Return index and the value in map[index]
-                output[0] = map[nums[index]]!!
+            val diff = target - nums[index]
+            if (map.contains(diff)) {
+                output[0] = map.getOrDefault(diff, 0)
                 output[1] = index
-            } else {
-                val sub = target - nums[index]
-                map[sub] = index
+                break
             }
+            map.putIfAbsent(nums[index], index)
         }
 
         return output
