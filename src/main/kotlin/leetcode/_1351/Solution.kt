@@ -2,26 +2,27 @@ package leetcode._1351
 
 class Solution {
     fun countNegatives(grid: Array<IntArray>): Int {
-        var output = 0
+        var count = 0
 
-        for (m in grid.indices) {
-            var nLow = 0
-            var nHigh = grid[m].size - 1
-            var index = -1
-            while (nLow <= nHigh) {
-                val nMid = nLow + (nHigh - nLow) / 2
-                if (grid[m][nMid] < 0) {
-                    index = nMid
-                    nHigh = nMid - 1
+        for (rowIndex in grid.indices) {
+            var low = 0
+            var high = grid[rowIndex].size - 1
+            var negativeIndex = grid[rowIndex].size
+
+            while (low <= high) {
+                val mid = (low + high) ushr 1
+
+                if (grid[rowIndex][mid] < 0) {
+                    negativeIndex = mid
+                    high = mid - 1
                 } else {
-                    nLow = nMid + 1
+                    low = mid + 1
                 }
             }
-            if (index > -1) {
-                output += (grid[m].size - index)
-            }
+
+            count += (grid[rowIndex].size - negativeIndex)
         }
 
-        return output
+        return count
     }
 }
