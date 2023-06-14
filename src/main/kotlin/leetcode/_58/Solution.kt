@@ -3,20 +3,15 @@ package leetcode._58
 class Solution {
     fun lengthOfLastWord(s: String): Int {
         var length = 0
-        var blank = false
 
-        for (char in s) {
-            if (char == ' ') {
-                blank = true
-            } else {
-                if (blank) {
-                    length = 1
-                    blank = false
-                } else {
-                    length++
-                }
+        for (index in s.length - 1 downTo 0) {
+            if (s[index] != ' ') {
+                length++
+            } else if (length > 0) {
+                break
             }
         }
+
         return length
     }
 }
