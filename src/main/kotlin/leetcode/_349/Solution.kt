@@ -13,14 +13,12 @@ class Solution {
             set2.add(num)
         }
 
-        val outputList = mutableListOf<Int>()
+        set1.retainAll(set2)
+        val intersectionArray = IntArray(set1.size)
+        var index = 0
         for (num in set1) {
-            if (set2.contains(num)) {
-                // Then we found a value (intersection)
-                outputList.add(num)
-            }
+            intersectionArray[index++] = num
         }
-
-        return outputList.toIntArray()
+        return intersectionArray
     }
 }
