@@ -2,22 +2,16 @@ package leetcode._557
 
 class Solution {
     fun reverseWords(s: String): String {
-        var index = 0
-        var startIndex: Int? = null
         val c = s.toCharArray()
+        var start = 0
 
-        while (index <= c.size) {
-            if (index == c.size || c[index] == ' ') {
-                if (startIndex != null) {
-                    reverse(c, startIndex, index - 1)
-                    startIndex = null
-                }
-            } else {
-                if (startIndex == null) {
-                    startIndex = index
-                }
+        while (start < c.size) {
+            var end = start
+            while (end < c.size && c[end] != ' ') {
+                end++
             }
-            index++
+            reverse(c, start, end - 1)
+            start = end + 1
         }
 
         return String(c)
