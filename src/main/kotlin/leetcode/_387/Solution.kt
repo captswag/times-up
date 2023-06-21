@@ -2,26 +2,20 @@ package leetcode._387
 
 class Solution {
     fun firstUniqChar(s: String): Int {
-        val map = HashMap<Char, Int>()
+        val sCharArray = IntArray(26)
 
-        for (char in s) {
-            val count = map[char]
-            if (count == null) {
-                map[char] = 1
-            } else {
-                map[char] = count + 1
-            }
+        for (c in s) {
+            sCharArray[c - 'a']++
         }
 
-        var uniqCharacterIndex = -1
+        var firstUniqCharIndex = -1
         for (index in s.indices) {
-            val char = s[index]
-            if (map[char] == 1) {
-                uniqCharacterIndex = index
+            if (sCharArray[s[index] - 'a'] == 1) {
+                firstUniqCharIndex = index
                 break
             }
         }
 
-        return uniqCharacterIndex
+        return firstUniqCharIndex
     }
 }
