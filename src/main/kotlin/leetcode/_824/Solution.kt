@@ -2,54 +2,37 @@ package leetcode._824
 
 class Solution {
 
-    private val set = hashSetOf<Char>('a', 'e', 'i', 'o', 'u')
-
     fun toGoatLatin(sentence: String): String {
-        val sb = StringBuilder()
+        val set = mutableSetOf('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
+        val goatLatin = StringBuilder()
+        var start = 0
+        var count = 0
 
-        var sIndex = 0
-        var eIndex = 0
-        var count = 1 // To count the index of the word so that we can append 'a' at the end
-
-        while (eIndex <= sentence.length) {
-            if (eIndex == sentence.length || sentence[eIndex] == ' ') {
-                // We either found a word or we readed the end of the sentence
-                if (set.contains(sentence[sIndex].toLowerCase())) {
-                    // The word starts with a vowel
-                    fillUp(sb, sentence, sIndex, eIndex - 1)
-                    sb.append("ma")
-                    appendA(sb, count, eIndex == sentence.length)
-                    sIndex = eIndex + 1
-                } else {
-                    // The word starts with a consonant
-                    fillUp(sb, sentence, sIndex + 1, eIndex - 1)
-                    sb.append(sentence[sIndex])
-                    sb.append("ma")
-                    appendA(sb, count, eIndex == sentence.length)
-                    sIndex = eIndex + 1
-                }
-                count++
+        while (start < sentence.length) {
+            count++
+            val startChar = sentence[start]
+            if (startChar in set) {
+                goatLatin.append(startChar)
             }
-            eIndex++
+
+            var end = start + 1
+            while (end < sentence.length && sentence[end] != ' ') {
+                goatLatin.append(sentence[end++])
+            }
+
+            if (startChar !in set) {
+                goatLatin.append(startChar)
+            }
+
+            goatLatin.append('m')
+            goatLatin.append("a".repeat(count + 1))
+            if (end < sentence.length) {
+                goatLatin.append(' ')
+            }
+
+            start = end + 1
         }
 
-        return sb.toString()
-    }
-
-    private fun fillUp(sb: StringBuilder, sentence: String, sIndex: Int, eIndex: Int) {
-        var startIndex = sIndex
-        while (startIndex <= eIndex) {
-            sb.append(sentence[startIndex])
-            startIndex++
-        }
-    }
-
-    private fun appendA(sb: StringBuilder, count: Int, lastWord: Boolean) {
-        for (index in 0 until count) {
-            sb.append('a')
-        }
-        if (!lastWord) {
-            sb.append(" ")
-        }
+        return goatLatin.toString()
     }
 }
