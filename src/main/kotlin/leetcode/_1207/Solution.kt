@@ -5,28 +5,22 @@ class Solution {
         val map = mutableMapOf<Int, Int>()
 
         for (num in arr) {
-            val count = map[num]
-            if (count == null) {
-                map[num] = 1
-            } else {
-                map[num] = count + 1
-            }
+            map[num] = map.getOrDefault(num, 0) + 1
         }
 
-        var output = true
+        var uniqueOccurrence = true
         val set = mutableSetOf<Int>()
 
         for (key in map.keys) {
-            val count = map[key]
-            if (count != null) {
-                if (set.contains(count)) {
-                    output = false
-                } else {
-                    set.add(count)
-                }
+            val count = map.getValue(key)
+            if (set.contains(count)) {
+                uniqueOccurrence = false
+                break
+            } else {
+                set.add(count)
             }
         }
 
-        return output
+        return uniqueOccurrence
     }
 }
