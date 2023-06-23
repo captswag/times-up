@@ -12,14 +12,14 @@ class Solution {
             countArray[index] += countArray[index - 1]
         }
 
-        val output = IntArray(nums.size)
         for (index in nums.indices) {
-            if (nums[index] == 0) {
-                output[index] = 0
+            nums[index] = if (nums[index] == 0) {
+                0
             } else {
-                output[index] = countArray[nums[index] - 1]
+                countArray[nums[index] - 1]
             }
         }
-        return output
+
+        return nums
     }
 }
