@@ -11,5 +11,5 @@ fun main() {
     val solution = Solution()
     val output = solution.countKeyChanges(s)
 
-    println("Number of Changing Keys is: $output")
+    println("Number of changing keys is: $output")
 }
