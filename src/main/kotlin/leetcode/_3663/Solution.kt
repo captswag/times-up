@@ -15,9 +15,7 @@ class Solution {
         var result = -1
         var min = Int.MAX_VALUE
         for (index in frequency.size - 1 downTo 0) {
-            if (frequency[index] == 0) {
-                continue
-            } else {
+            if (frequency[index] != 0) {
                 if (frequency[index] <= min) {
                     min = frequency[index]
                     result = index
