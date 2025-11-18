@@ -1,21 +1,23 @@
 package leetcode._3684
 
+import java.util.*
+
 class Solution {
 
     fun maxKDistinct(nums: IntArray, k: Int): IntArray {
-        nums.sortDescending()
-        val output = mutableListOf<Int>()
+        val set = TreeSet<Int>(compareByDescending { it })
 
-        var index = 0
-        output.add(nums[index++])
-
-        while (index < nums.size && output.size < k) {
-            if (nums[index] != output[output.size - 1]) {
-                output.add(nums[index])
-            }
-            index++
+        for (num in nums) {
+            set.add(num)
         }
 
-        return output.toIntArray()
+        val result = IntArray(Math.min(k, set.size))
+        for (index in result.indices) {
+            val num = set.first()
+            result[index] = num
+            set.remove(num)
+        }
+
+        return result
     }
 }
