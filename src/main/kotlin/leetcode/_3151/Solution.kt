@@ -6,7 +6,7 @@ class Solution {
         var output = true
 
         for (index in 0 until nums.size - 1) {
-            if (nums[index] % 2 == nums[index + 1] % 2) {
+            if ((nums[index] and 1) xor (nums[index + 1] and 1) == 0) {
                 output = false
                 break
             }
