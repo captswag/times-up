@@ -18,7 +18,7 @@ fun main() {
     val output = solution.checkPrimeFrequency(nums)
 
     if (output) {
-        println("There is an element which has prime frequency")
+        println("There is at least one element which has prime frequency")
     } else {
         println("There is no element with prime frequency")
     }
