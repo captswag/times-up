@@ -7,9 +7,8 @@ class Solution {
         var max = 0
 
         for (num in nums) {
-            val newFrequency = ++frequency[num]
-            if (newFrequency > max) {
-                max = newFrequency
+            if (++frequency[num] > max) {
+                max = frequency[num]
             }
         }
 
