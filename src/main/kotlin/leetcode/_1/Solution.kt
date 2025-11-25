@@ -10,9 +10,9 @@ class Solution {
             if (map.contains(diff)) {
                 output[0] = map.getOrDefault(diff, 0)
                 output[1] = index
-                break
+            } else {
+                map[nums[index]] = index
             }
-            map.putIfAbsent(nums[index], index)
         }
 
         return output
