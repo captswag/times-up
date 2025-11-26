@@ -2,22 +2,20 @@ package leetcode._485
 
 class Solution {
     fun findMaxConsecutiveOnes(nums: IntArray): Int {
-        var output = 0
-        var count = 0
-        var index = 0
+        var mc = 0
+        var cc = 0
 
-        while (index <= nums.size) {
-            if (index == nums.size || nums[index] != 1) {
-                if (count > output) {
-                    output = count
+        for (num in nums) {
+            if (num == 1) {
+                cc++
+                if (cc > mc) {
+                    mc = cc
                 }
-                count = 0
             } else {
-                count++
+                cc = 0
             }
-            index++
         }
 
-        return output
+        return mc
     }
 }
