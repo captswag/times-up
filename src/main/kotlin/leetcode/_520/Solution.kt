@@ -2,33 +2,29 @@ package leetcode._520
 
 class Solution {
     fun detectCapitalUse(word: String): Boolean {
-        val upperCase = word[0].isUpperCase()
-        var lowerCaseIndex1: Boolean? = null
-        var output = true
+        if (word.length == 1) {
+            return true
+        }
 
-        for (index in 1 until word.length) {
-            if (upperCase) {
-                if (index == 1) {
-                    lowerCaseIndex1 = word[index].isLowerCase()
-                } else {
-                    if (lowerCaseIndex1 == true) {
-                        if (word[index].isUpperCase()) {
-                            output = false
-                            break
-                        }
-                    } else {
-                        if (word[index].isLowerCase()) {
-                            output = false
-                            break
-                        }
-                    }
+        var wi = 0
+        val capital = if (word[wi++].isLowerCase()) {
+            false
+        } else {
+            !word[wi++].isLowerCase()
+        }
+
+        while (wi < word.length) {
+            if (capital) {
+                if (word[wi++].isLowerCase()) {
+                    return false
                 }
-            } else if (word[index].isUpperCase()) {
-                output = false
-                break
+            } else {
+                if (word[wi++].isUpperCase()) {
+                    return false
+                }
             }
         }
 
-        return output
+        return true
     }
 }
