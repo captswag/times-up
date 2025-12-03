@@ -2,29 +2,23 @@ package leetcode._1437
 
 class Solution {
     fun kLengthApart(nums: IntArray, k: Int): Boolean {
-        var output = true
-        var previousIndex = -1
-        var index = 0
+        var prevIndex = -1
+        var currIndex = 0
 
-        while (index < nums.size) {
-            if (previousIndex == -1) {
-                if (nums[index] == 1) {
-                    previousIndex = index
-                }
-            } else {
-                if (nums[index] == 1) {
-                    // Check the diff
-                    val diff = index - previousIndex - 1
-                    if (diff < k) {
-                        output = false
-                        break
+        while (currIndex < nums.size) {
+            if (nums[currIndex] == 1) {
+                if (prevIndex == -1) {
+                    prevIndex = currIndex
+                } else {
+                    if (currIndex - prevIndex - 1 < k) {
+                        return false
                     }
-                    previousIndex = index
+                    prevIndex = currIndex
                 }
             }
-            index++
+            currIndex++
         }
 
-        return output
+        return true
     }
 }
