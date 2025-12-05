@@ -2,38 +2,31 @@ package leetcode._228
 
 class Solution {
     fun summaryRanges(nums: IntArray): List<String> {
-        val output = mutableListOf<String>()
-        var inSummaryRange = false
-        var startValue: Int? = null
+        val summaryRanges = mutableListOf<String>()
 
-        var index = 0
-        while (index < nums.size) {
-            if (inSummaryRange) {
-                // Check whether the previous value is current value - 1
-                if (nums[index - 1] != nums[index] - 1) {
-                    // Check if the range has only one value
-                    output.add(getSummaryRange(startValue, nums[index - 1]))
-                    inSummaryRange = false
-                } else {
-                    index++
+        if (nums.isNotEmpty()) {
+            var index = 0
+            var start = nums[index++]
+
+            while (index < nums.size) {
+                if (nums[index] != nums[index - 1] + 1) {
+                    summaryRanges.add(getSummaryRange(start, nums[index - 1]))
+                    start = nums[index]
                 }
-            } else {
-                startValue = nums[index]
-                inSummaryRange = true
                 index++
             }
+
+            summaryRanges.add(getSummaryRange(start, nums[nums.size - 1]))
         }
 
-        if (inSummaryRange) {
-            output.add(getSummaryRange(startValue, nums[nums.size - 1]))
-            inSummaryRange = false
-        }
-        return output
+        return summaryRanges
     }
 
-    private fun getSummaryRange(startValue: Int?, endValue: Int): String = if (startValue == endValue) {
-        "$startValue"
-    } else {
-        "$startValue->$endValue"
+    private fun getSummaryRange(start: Int, end: Int): String {
+        return if (start == end) {
+            "$start"
+        } else {
+            "$start->$end"
+        }
     }
 }
