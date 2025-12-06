@@ -2,27 +2,28 @@ package leetcode._345
 
 class Solution {
     fun reverseVowels(s: String): String {
-        val set = hashSetOf('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
-        val charArray = s.toCharArray()
-        var start = 0
-        var end = charArray.size - 1
+        val chars = s.toCharArray()
+        val vowels = mutableSetOf('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
+        var left = 0
+        var right = chars.size - 1
 
-        while (start < end) {
-            while (start < charArray.size && charArray[start] !in set) {
-                start++
-            }
-            while (end >= 0 && charArray[end] !in set) {
-                end--
-            }
-            if (start < end) {
-                val temp = charArray[end]
-                charArray[end] = charArray[start]
-                charArray[start] = temp
-                start++
-                end--
+        while (left < right) {
+            if (chars[left] in vowels && chars[right] in vowels) {
+                val temp = chars[left]
+                chars[left] = chars[right]
+                chars[right] = temp
+                left++
+                right--
+            } else if (chars[left] in vowels) {
+                right--
+            } else if (chars[right] in vowels) {
+                left++
+            } else {
+                left++
+                right--
             }
         }
 
-        return String(charArray)
+        return String(chars)
     }
 }
