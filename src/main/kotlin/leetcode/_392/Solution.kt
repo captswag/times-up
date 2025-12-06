@@ -2,16 +2,16 @@ package leetcode._392
 
 class Solution {
     fun isSubsequence(s: String, t: String): Boolean {
-        var sIndex = 0
-        var tIndex = 0
+        var si = 0
+        var ti = 0
 
-        while (sIndex < s.length && tIndex < t.length) {
-            if (s[sIndex] == t[tIndex]) {
-                sIndex++
+        while (si < s.length && ti < t.length) {
+            if (s[si] == t[ti]) {
+                si++
             }
-            tIndex++
+            ti++
         }
 
-        return sIndex == s.length
+        return si == s.length
     }
 }
