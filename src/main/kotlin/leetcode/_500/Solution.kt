@@ -2,24 +2,23 @@ package leetcode._500
 
 class Solution {
     fun findWords(words: Array<String>): Array<String> {
-        val output = mutableListOf<String>()
-        val charRowArray = intArrayOf(2, 3, 3, 2, 1, 2, 2, 2, 1, 2, 2, 2, 3, 3, 1, 1, 1, 1, 2, 1, 1, 3, 1, 3, 1, 3)
+        val charRow = intArrayOf(1, 0, 0, 1, 2, 1, 1, 1, 2, 1, 1, 1, 0, 0, 2, 2, 2, 2, 1, 2, 2, 0, 2, 0, 2, 0)
+        val result = mutableListOf<String>()
 
         for (word in words) {
-            val belongsIn = charRowArray[word[0].toLowerCase() - 'a']
-            var canBeTyped = true
-            for (index in 1 until word.length) {
-                val char = word[index].toLowerCase()
-                if (charRowArray[char - 'a'] != belongsIn) {
-                    canBeTyped = false
-                    break
-                }
+            var index = 0
+            val row = charRow[word[index].lowercaseChar() - 'a']
+            index++
+
+            while (index < word.length && charRow[word[index].lowercaseChar() - 'a'] == row) {
+                index++
             }
-            if (canBeTyped) {
-                output.add(word)
+
+            if (index == word.length) {
+                result.add(word)
             }
         }
 
-        return output.toTypedArray()
+        return result.toTypedArray()
     }
 }
