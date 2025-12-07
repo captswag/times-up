@@ -2,21 +2,22 @@ package leetcode._266
 
 class Solution {
     fun canPermutePalindrome(s: String): Boolean {
-        val set = mutableSetOf<Char>()
+        val frequency = IntArray(26)
 
         for (c in s) {
-            if (set.contains(c)) {
-                set.remove(c)
-            } else {
-                set.add(c)
+            frequency[c - 'a']++
+        }
+
+        var oddCount = 0
+        for (f in frequency) {
+            if (f and 1 == 1) {
+                oddCount++
+                if (oddCount == 2) {
+                    return false
+                }
             }
         }
 
-        // Check if the length of the string is even or odd.
-        return if (s.length % 2 == 0) {
-            set.isEmpty()
-        } else {
-            set.size == 1
-        }
+        return true
     }
 }
