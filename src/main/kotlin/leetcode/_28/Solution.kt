@@ -2,39 +2,29 @@ package leetcode._28
 
 class Solution {
     fun strStr(haystack: String, needle: String): Int {
-        var output = -1
-        if (needle.isEmpty()) {
-            output = 0
-        } else {
-            var originalIndex = 0
-            var haystackIndex = 0
-            var needleIndex = 0
+        var haystackIndex = 0
+        var needleIndex = 0
 
-            outer@ while (haystackIndex < haystack.length) {
-                val haystackChar = haystack[haystackIndex]
-
-                if (needleIndex >= needle.length) {
-                    output = originalIndex
-                    break@outer
-                }
-
-                val needleChar = needle[needleIndex]
-
-                if (haystackChar == needleChar) {
-                    // Continue
+        while (haystackIndex < haystack.length) {
+            if (haystack[haystackIndex] == needle[needleIndex]) {
+                val currentIndex = haystackIndex
+                haystackIndex++
+                needleIndex++
+                while (haystackIndex < haystack.length && needleIndex < needle.length && haystack[haystackIndex] == needle[needleIndex]) {
                     haystackIndex++
                     needleIndex++
-                } else {
-                    // Reset haystack index to the original index + 1
-                    needleIndex = 0
-                    originalIndex++
-                    haystackIndex = originalIndex
                 }
-            }
-            if (needleIndex >= needle.length) {
-                output = originalIndex
+                if (needleIndex == needle.length) {
+                    return currentIndex
+                } else {
+                    haystackIndex = currentIndex + 1
+                    needleIndex = 0
+                }
+            } else {
+                haystackIndex++
             }
         }
-        return output
+
+        return -1
     }
 }
