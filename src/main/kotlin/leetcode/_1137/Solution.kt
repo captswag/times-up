@@ -2,26 +2,24 @@ package leetcode._1137
 
 class Solution {
     fun tribonacci(n: Int): Int {
-        var prev = 0
-        var current = 1
-        var next = 1
+        return when (n) {
+            0 -> 0
+            1 -> 1
+            2 -> 1
+            else -> {
+                var a = 0
+                var b = 1
+                var c = 1
 
-        var output = 0
-        for (index in 0..n) {
-            if (index == 0) {
-                output = prev
-            } else if (index == 1) {
-                output = current
-            } else if (index == 2) {
-                output = next
-            } else {
-                output = prev + current + next
-                prev = current
-                current = next
-                next = output
+                for (currN in 3..n) {
+                    val next = c + b + a
+                    a = b
+                    b = c
+                    c = next
+                }
+
+                c
             }
         }
-
-        return output
     }
 }
