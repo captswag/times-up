@@ -2,21 +2,19 @@ package leetcode._509
 
 class Solution {
     fun fib(n: Int): Int {
-        var prev = 0
-        var current = 1
+        return if (n < 2) {
+            n
+        } else {
+            var a = 0
+            var b = 1
 
-        var output = 0
-        for (index in 0..n) {
-            if (index == 0) {
-                output = prev
-            } else if (index == 1) {
-                output = current
-            } else {
-                output = prev + current
-                prev = current
-                current = output
+            for (currN in 2..n) {
+                val next = b + a
+                a = b
+                b = next
             }
+
+            b
         }
-        return output
     }
 }
