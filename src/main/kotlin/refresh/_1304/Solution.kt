@@ -3,18 +3,14 @@ package refresh._1304
 class Solution {
 
     fun sumZero(n: Int): IntArray {
+        val mid = n / 2
         val res = IntArray(n)
         var index = 0
 
-        if (n and 1 == 1) {
-            res[index++] = 0
-        }
-
-        var value = 1
-        while (index < res.size) {
-            res[index++] = value
-            res[index++] = value * -1
-            value++
+        for (value in (mid * -1) until (mid + 1)) {
+            if (value != 0) {
+                res[index++] = value
+            }
         }
 
         return res
