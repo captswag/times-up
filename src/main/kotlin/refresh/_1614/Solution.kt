@@ -3,20 +3,20 @@ package refresh._1614
 class Solution {
 
     fun maxDepth(s: String): Int {
-        var mnd = 0
-        var parentheses = 0
+        var maxDepth = 0
+        var currDepth = 0
 
         for (c in s) {
             if (c == '(') {
-                parentheses++
+                currDepth++
+                if (currDepth > maxDepth) {
+                    maxDepth = currDepth
+                }
             } else if (c == ')') {
-                parentheses--
-            }
-            if (parentheses > mnd) {
-                mnd = parentheses
+                currDepth--
             }
         }
 
-        return mnd
+        return maxDepth
     }
 }
