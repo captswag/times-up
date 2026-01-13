@@ -3,20 +3,21 @@ package refresh._1816
 class Solution {
 
     fun truncateSentence(s: String, k: Int): String {
-        var kCount = 0
-        var sIndex = 0
-        val sb = StringBuilder()
+        var count = 0
+        var i = 0
+        val res = StringBuilder()
 
-        while (kCount < k) {
-            while (sIndex < s.length && s[sIndex] != ' ') {
-                sb.append(s[sIndex++])
+        while (count < k) {
+            while (i < s.length && s[i] != ' ') {
+                res.append(s[i++])
             }
-            kCount++
-            if (kCount != k) {
-                sb.append(s[sIndex++])
+            count++
+            if (count != k) {
+                res.append(' ')
             }
+            i++
         }
 
-        return sb.toString()
+        return res.toString()
     }
 }
