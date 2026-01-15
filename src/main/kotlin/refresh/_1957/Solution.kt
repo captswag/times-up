@@ -6,21 +6,15 @@ class Solution {
         val res = StringBuilder()
 
         var i = 0
-        res.append(s[i])
-        var count = 1
-        i++
-
         while (i < s.length) {
-            if (s[i] == s[i - 1]) {
-                count++
-                if (count < 3) {
-                    res.append(s[i])
+            var j = i
+            while (j < s.length && s[i] == s[j]) {
+                if (j - i + 1 < 3) {
+                    res.append(s[j])
                 }
-            } else {
-                res.append(s[i])
-                count = 1
+                j++
             }
-            i++
+            i = j
         }
 
         return res.toString()
