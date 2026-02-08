@@ -12,7 +12,7 @@ class Solution {
         var cnt = 0
         for (i in 0 until nums.size - 1) {
             sum -= nums[i]
-            if (nums[i] > sum.toDouble() / (nums.size - i - 1)) {
+            if (nums[i] * (nums.size - i - 1) > sum) {
                 cnt++
             }
         }
