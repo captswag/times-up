@@ -7,9 +7,10 @@ fun main() {
 
     print("Enter the string pattern: ")
     val pattern = scanner.next()
+    scanner.nextLine()
 
     print("Enter the string s: ")
-    val s = scanner.next()
+    val s = scanner.nextLine()
 
     val solution = Solution()
     val output = solution.wordPattern(pattern, s)
