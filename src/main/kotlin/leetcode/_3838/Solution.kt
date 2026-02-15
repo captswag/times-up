@@ -6,10 +6,10 @@ class Solution {
         val a = CharArray(words.size)
         var i = 0
 
-        for (x in words) {
+        for (s in words) {
             var sum = 0
 
-            for (c in x) {
+            for (c in s) {
                 sum += weights[c - 'a']
             }
 
