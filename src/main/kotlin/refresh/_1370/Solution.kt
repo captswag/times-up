@@ -3,41 +3,30 @@ package refresh._1370
 class Solution {
 
     fun sortString(s: String): String {
-        val frequency = IntArray(26)
-        val set = mutableSetOf<Char>()
+        val freq = IntArray(26)
 
         for (c in s) {
-            frequency[c - 'a']++
-            set.add(c)
+            freq[c - 'a']++
         }
 
-        var index = 0
-        var ascending = true
-        val res = StringBuilder()
-        while (set.isNotEmpty()) {
-            if (index == -1) {
-                index = 0
-                ascending = true
-            } else if (index == 26) {
-                index = 25
-                ascending = false
-            } else {
-                if (frequency[index] > 0) {
-                    val char = (index + 'a'.code).toChar()
-                    res.append(char)
-                    frequency[index]--
-                    if (frequency[index] == 0) {
-                        set.remove(char)
-                    }
-                }
-                if (ascending) {
-                    index++
-                } else {
-                    index--
-                }
+        val res = CharArray(s.length)
+        var i = 0
+        var v = 0
+        var dir = 1
+
+        while (i < res.size) {
+            if (freq[v] > 0) {
+                res[i] = (v + 'a'.code).toChar()
+                i++
+                freq[v]--
+            }
+            v += dir
+            if (v == -1 || v == 26) {
+                dir = -dir
+                v += dir
             }
         }
 
-        return res.toString()
+        return String(res)
     }
 }
