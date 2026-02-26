@@ -3,19 +3,20 @@ package leetcode._3168
 class Solution {
 
     fun minimumChairs(s: String): Int {
-        var output = 0
-        var eCount = 0
+        var cnt = 0
+        var mx = 0
 
         for (c in s) {
             if (c == 'E') {
-                if (++eCount > output) {
-                    output = eCount
+                cnt++
+                if (cnt > mx) {
+                    mx = cnt
                 }
             } else {
-                eCount--
+                cnt--
             }
         }
 
-        return output
+        return mx
     }
 }
