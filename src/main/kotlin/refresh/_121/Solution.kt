@@ -1,20 +1,19 @@
 package refresh._121
 
+import kotlin.math.max
+import kotlin.math.min
+
 class Solution {
 
     fun maxProfit(prices: IntArray): Int {
-        var maxProfit = 0
+        var mx = 0
+        var mn = prices[0]
 
-        for (index in prices.size - 2 downTo 0) {
-            val profit = prices[index + 1] - prices[index]
-            if (profit > maxProfit) {
-                maxProfit = profit
-            }
-            if (prices[index + 1] > prices[index]) {
-                prices[index] = prices[index + 1]
-            }
+        for (i in 1 until prices.size) {
+            mx = max(mx, prices[i] - mn)
+            mn = min(mn, prices[i])
         }
 
-        return maxProfit
+        return mx
     }
 }
