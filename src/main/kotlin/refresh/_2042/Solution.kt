@@ -4,24 +4,23 @@ class Solution {
 
     fun areNumbersAscending(s: String): Boolean {
         var i = 0
-        var prev = -1
+        var prev = 0
 
         while (i < s.length) {
             if (s[i].isDigit()) {
-                var number = s[i] - '0'
-                i++
+                var cur = 0
                 while (i < s.length && s[i].isDigit()) {
-                    number *= 10
-                    number += (s[i] - '0')
+                    cur = (cur * 10) + (s[i] - '0')
                     i++
                 }
-                if (prev == -1 || number > prev) {
-                    prev = number
-                } else {
+
+                if (cur <= prev) {
                     return false
                 }
+                prev = cur
+            } else {
+                i++
             }
-            i++
         }
 
         return true
