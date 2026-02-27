@@ -3,30 +3,26 @@ package refresh._2000
 class Solution {
 
     fun reversePrefix(word: String, ch: Char): String {
-        var i = 0
-
-        while (i < word.length) {
-            if (word[i] == ch) {
-                break
-            }
-            i++
+        var r = 0
+        while (r < word.length && word[r] != ch) {
+            r++
         }
 
-        return if (i == word.length) {
+        return if (r == word.length) {
             word
         } else {
-            val c = word.toCharArray()
-            var low = 0
-            var high = i
-            while (low < high) {
-                val temp = c[low]
-                c[low] = c[high]
-                c[high] = temp
-                low++
-                high--
+            val a = word.toCharArray()
+            var l = 0
+
+            while (l < r) {
+                val tmp = a[l]
+                a[l] = a[r]
+                a[r] = tmp
+                l++
+                r--
             }
 
-            return String(c)
+            String(a)
         }
     }
 }
