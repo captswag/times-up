@@ -3,15 +3,16 @@ package refresh._2011
 class Solution {
 
     fun finalValueAfterOperations(operations: Array<String>): Int {
-        var x = 0
+        var ans = 0
 
-        for (operation in operations) {
-            when (operation) {
-                "++X", "X++" -> x++
-                "--X", "X--" -> x--
+        for (o in operations) {
+            if (o[1] == '+') {
+                ans++
+            } else {
+                ans--
             }
         }
 
-        return x
+        return ans
     }
 }
