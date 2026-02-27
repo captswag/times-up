@@ -7,15 +7,15 @@ class Solution {
 
     fun maximumDifference(nums: IntArray): Int {
         var mn = nums[0]
-        var mx = -1
+        var ans = -1
 
         for (i in 1 until nums.size) {
             if (nums[i] > mn) {
-                mx = max(mx, nums[i] - mn)
+                ans = max(ans, nums[i] - mn)
             }
             mn = min(mn, nums[i])
         }
 
-        return mx
+        return ans
     }
 }
