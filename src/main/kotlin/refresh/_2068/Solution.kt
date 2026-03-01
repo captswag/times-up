@@ -7,12 +7,9 @@ class Solution {
     fun checkAlmostEquivalent(word1: String, word2: String): Boolean {
         val freq = IntArray(26)
 
-        for (c in word1) {
-            freq[c - 'a']++
-        }
-
-        for (c in word2) {
-            freq[c - 'a']--
+        for (i in word1.indices) {
+            freq[word1[i] - 'a']++
+            freq[word2[i] - 'a']--
         }
 
         for (f in freq) {
