@@ -4,7 +4,6 @@ class Solution {
 
     fun checkString(s: String): Boolean {
         var i = 0
-
         while (i < s.length && s[i] == 'a') {
             i++
         }
