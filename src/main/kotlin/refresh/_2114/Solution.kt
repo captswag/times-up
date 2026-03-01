@@ -5,18 +5,19 @@ import kotlin.math.max
 class Solution {
 
     fun mostWordsFound(sentences: Array<String>): Int {
-        var max = 1
+        var mx = 0
 
-        for (sentence in sentences) {
-            var count = 0
-            for (c in sentence) {
+        for (s in sentences) {
+            var cur = 1
+            for (c in s) {
                 if (c == ' ') {
-                    count++
+                    cur++
                 }
             }
-            max = max(max, count + 1)
+
+            mx = max(mx, cur)
         }
 
-        return max
+        return mx
     }
 }
