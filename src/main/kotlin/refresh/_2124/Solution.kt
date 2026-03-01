@@ -3,18 +3,16 @@ package refresh._2124
 class Solution {
 
     fun checkString(s: String): Boolean {
-        var bFound = false
+        var i = 0
 
-        for (c in s) {
-            if (c == 'a') {
-                if (bFound) {
-                    return false
-                }
-            } else {
-                bFound = true
-            }
+        while (i < s.length && s[i] == 'a') {
+            i++
         }
 
-        return true
+        while (i < s.length && s[i] == 'b') {
+            i++
+        }
+
+        return i == s.length
     }
 }
