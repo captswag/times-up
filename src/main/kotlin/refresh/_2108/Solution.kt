@@ -3,27 +3,23 @@ package refresh._2108
 class Solution {
 
     fun firstPalindrome(words: Array<String>): String {
-        for (word in words) {
-            if (isPalindrome(word)) {
-                return word
+        for (w in words) {
+            var l = 0
+            var r = w.length - 1
+
+            while (l < r) {
+                if (w[l] != w[r]) {
+                    break
+                }
+                l++
+                r--
+            }
+
+            if (l >= r) {
+                return w
             }
         }
 
         return ""
-    }
-
-    private fun isPalindrome(word: String): Boolean {
-        var left = 0
-        var right = word.length - 1
-
-        while (left < right) {
-            if (word[left] != word[right]) {
-                return false
-            }
-            left++
-            right--
-        }
-
-        return true
     }
 }
