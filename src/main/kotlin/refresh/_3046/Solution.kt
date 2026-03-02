@@ -5,8 +5,8 @@ class Solution {
     fun isPossibleToSplit(nums: IntArray): Boolean {
         val freq = IntArray(101)
 
-        for (num in nums) {
-            freq[num]++
+        for (x in nums) {
+            freq[x]++
         }
 
         for (f in freq) {
