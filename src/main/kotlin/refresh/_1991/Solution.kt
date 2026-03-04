@@ -3,23 +3,22 @@ package refresh._1991
 class Solution {
 
     fun findMiddleIndex(nums: IntArray): Int {
-        var rightSum = 0
+        var r = 0
 
-        for (i in 1 until nums.size) {
-            rightSum += nums[i]
+        for (x in nums) {
+            r += x
         }
 
-        if (rightSum == 0) {
-            return 0
-        } else {
-            var leftSum = 0
-            for (i in 1 until nums.size) {
-                leftSum += nums[i - 1]
-                rightSum -= nums[i]
-                if (leftSum == rightSum) {
-                    return i
-                }
+        var pre = 0
+        var l = 0
+
+        for (i in nums.indices) {
+            l += pre
+            r -= nums[i]
+            if (l == r) {
+                return i
             }
+            pre = nums[i]
         }
 
         return -1
