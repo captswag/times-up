@@ -5,6 +5,10 @@ import kotlin.math.abs
 class Solution {
 
     fun findMaxK(nums: IntArray): Int {
+        /**
+         * Got this from LeetCode Solutions
+         * https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/solutions/2708141/array-by-votrubac-w1qy
+         */
         var res = -1
         val seen = BooleanArray(2001)
 
