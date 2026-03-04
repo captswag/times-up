@@ -4,7 +4,7 @@ class Solution {
 
     fun twoOutOfThree(nums1: IntArray, nums2: IntArray, nums3: IntArray): List<Int> {
         /**
-         * Got this solution from LeetCode Solutions
+         * Got this from LeetCode Solutions
          * https://leetcode.com/problems/two-out-of-three/solutions/1513355/three-count-arrays-by-votrubac-hm1v
          */
         val frequency = Array(3) { IntArray(101) }
