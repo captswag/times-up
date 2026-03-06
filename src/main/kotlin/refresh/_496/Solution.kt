@@ -5,22 +5,18 @@ import java.util.*
 class Solution {
 
     fun nextGreaterElement(nums1: IntArray, nums2: IntArray): IntArray {
-        val st = Stack<Int>()
+        val stk = Stack<Int>()
         val mp = mutableMapOf<Int, Int>()
 
         for (x in nums2) {
-            if (st.isEmpty()) {
-                st.push(x)
-            } else {
-                while (st.isNotEmpty() && x > st.peek()) {
-                    mp[st.pop()] = x
-                }
-                st.push(x)
+            while (stk.isNotEmpty() && stk.peek() < x) {
+                mp[stk.pop()] = x
             }
+            stk.push(x)
         }
 
-        while (st.isNotEmpty()) {
-            mp[st.pop()] = -1
+        while (stk.isNotEmpty()) {
+            mp[stk.pop()] = -1
         }
 
         for (i in nums1.indices) {
