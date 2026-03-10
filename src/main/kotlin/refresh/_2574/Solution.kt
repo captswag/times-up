@@ -5,19 +5,19 @@ import kotlin.math.abs
 class Solution {
 
     fun leftRightDifference(nums: IntArray): IntArray {
-        val leftSum = IntArray(nums.size)
-        val rightSum = IntArray(nums.size)
+        var ls = 0
+        var rs = 0
 
-        for (i in 1 until leftSum.size) {
-            leftSum[i] = leftSum[i - 1] + nums[i - 1]
+        for (x in nums) {
+            rs += x
         }
 
-        for (i in rightSum.size - 2 downTo 0) {
-            rightSum[i] = rightSum[i + 1] + nums[i + 1]
-        }
-
+        var prv = 0
         for (i in nums.indices) {
-            nums[i] = abs(leftSum[i] - rightSum[i])
+            ls += prv
+            rs -= nums[i]
+            prv = nums[i]
+            nums[i] = abs(ls - rs)
         }
 
         return nums
