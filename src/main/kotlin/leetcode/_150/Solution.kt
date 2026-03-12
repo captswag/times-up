@@ -4,19 +4,19 @@ class Solution {
 
     fun evalRPN(tokens: Array<String>): Int {
         val stk = IntArray(tokens.size)
-        var size = 0
+        var sz = 0
 
         for (s in tokens) {
             if (isDigit(s)) {
-                stk[size++] = digit(s)
+                stk[sz++] = digit(s)
             } else {
-                val b = stk[--size]
-                val a = stk[--size]
+                val b = stk[--sz]
+                val a = stk[--sz]
                 when (s[0]) {
-                    '+' -> stk[size++] = a + b
-                    '-' -> stk[size++] = a - b
-                    '*' -> stk[size++] = a * b
-                    else -> stk[size++] = a / b
+                    '+' -> stk[sz++] = a + b
+                    '-' -> stk[sz++] = a - b
+                    '*' -> stk[sz++] = a * b
+                    else -> stk[sz++] = a / b
                 }
             }
         }
@@ -40,12 +40,12 @@ class Solution {
             sign = 1
         }
 
-        var num = 0
+        var res = 0
         while (i < s.length) {
-            num = (num * 10) + (s[i] - '0')
+            res = (res * 10) + (s[i] - '0')
             i++
         }
 
-        return num * sign
+        return res * sign
     }
 }
