@@ -3,25 +3,21 @@ package refresh._2006
 class Solution {
 
     fun countKDifference(nums: IntArray, k: Int): Int {
-        val frequency = IntArray(101)
+        val cnt = IntArray(101)
+        var ans = 0
 
-        for (num in nums) {
-            frequency[num]++
+        for (x in nums) {
+            if (x + k < 101 && cnt[x + k] > 0) {
+                ans += cnt[x + k]
+            }
+
+            if (x - k >= 0 && cnt[x - k] > 0) {
+                ans += cnt[x - k]
+            }
+
+            cnt[x]++
         }
 
-        var count = 0
-        for (num in nums) {
-            frequency[num]--
-            val num1 = num - k
-            val num2 = num + k
-            if (num1 in 1..100) {
-                count += frequency[num1]
-            }
-            if (num2 in 1..100) {
-                count += frequency[num2]
-            }
-        }
-
-        return count
+        return ans
     }
 }
