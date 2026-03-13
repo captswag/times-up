@@ -1,18 +1,48 @@
 package refresh._3774
 
+import kotlin.math.min
+
 class Solution {
 
     fun absDifference(nums: IntArray, k: Int): Int {
-        nums.sort()
+        val cnt = IntArray(101)
 
-        var sum1 = 0
-        var sum2 = 0
-
-        for (i in 0 until k) {
-            sum1 += nums[i]
-            sum2 += nums[nums.size - 1 - i]
+        for (x in nums) {
+            cnt[x]++
         }
 
-        return sum2 - sum1
+        var rem = k
+        var i = 1
+        var mn = 0
+
+        while (rem > 0) {
+            if (cnt[i] > 0) {
+                val take = min(rem, cnt[i])
+                mn += (take * i)
+                rem -= take
+                if (cnt[i] == take) {
+                    i++
+                }
+            } else {
+                i++
+            }
+        }
+
+        rem = k
+        i = cnt.size - 1
+        var mx = 0
+
+        while (rem > 0) {
+            if (cnt[i] > 0) {
+                val take = min(rem, cnt[i])
+                mx += (take * i)
+                rem -= take
+                cnt[i] -= take
+            } else {
+                i--
+            }
+        }
+
+        return mx - mn
     }
 }
