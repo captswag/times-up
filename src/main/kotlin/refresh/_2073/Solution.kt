@@ -1,19 +1,21 @@
 package refresh._2073
 
+import kotlin.math.min
+
 class Solution {
 
     fun timeRequiredToBuy(tickets: IntArray, k: Int): Int {
+        /**
+         * Got this from LeetCode Editorial
+         * https://leetcode.com/problems/time-needed-to-buy-tickets/editorial/#approach-3-using-one-pass
+         */
         var cnt = 0
-        var i = 0
 
-        while (tickets[k] != 0) {
-            if (tickets[i] != 0) {
-                tickets[i]--
-                cnt++
-            }
-            i++
-            if (i == tickets.size) {
-                i = 0
+        for (i in tickets.indices) {
+            cnt += if (i <= k) {
+                min(tickets[i], tickets[k])
+            } else {
+                min(tickets[i], tickets[k] - 1)
             }
         }
 
