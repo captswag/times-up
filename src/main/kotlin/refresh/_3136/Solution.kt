@@ -3,23 +3,22 @@ package refresh._3136
 class Solution {
 
     fun isValid(word: String): Boolean {
-        var hasVowel = false
-        var hasConsonant = false
+        var hasVow = false
+        var hasCon = false
 
         for (c in word) {
-            if (!c.isLetterOrDigit()) {
+            if (c == '@' || c == '#' || c == '$') {
                 return false
-            }
-            if (c.isLetter()) {
+            } else if (c.isLetter()) {
                 if (isVowel(c)) {
-                    hasVowel = true
+                    hasVow = true
                 } else {
-                    hasConsonant = true
+                    hasCon = true
                 }
             }
         }
 
-        return word.length > 2 && hasVowel && hasConsonant
+        return word.length >= 3 && hasVow && hasCon
     }
 
     private fun isVowel(c: Char): Boolean {
