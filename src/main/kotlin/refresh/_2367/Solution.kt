@@ -4,18 +4,15 @@ class Solution {
 
     fun arithmeticTriplets(nums: IntArray, diff: Int): Int {
         val seen = BooleanArray(201)
+        var ans = 0
 
-        for (num in nums) {
-            seen[num] = true
-        }
-
-        var cnt = 0
-        for (num in nums) {
-            if (num + diff + diff < seen.size && seen[num + diff] && seen[num + diff + diff]) {
-                cnt++
+        for (x in nums) {
+            if (x - diff >= 0 && x - diff - diff >= 0 && seen[x - diff] && seen[x - diff - diff]) {
+                ans++
             }
+            seen[x] = true
         }
 
-        return cnt
+        return ans
     }
 }
