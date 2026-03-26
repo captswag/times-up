@@ -7,21 +7,19 @@ class Solution {
         var usedTwo = false
 
         while (i < s.length) {
-            var j = i
-            while (j < s.length && s[i] == s[j]) {
-                j++
+            val j = i
+            while (i < s.length && s[i] == s[j]) {
+                i++
             }
-            val count = j - i
-            if (count % 3 == 2) {
+            if ((i - j) % 3 == 1) {
+                return false
+            } else if ((i - j) % 3 == 2) {
                 if (usedTwo) {
                     return false
                 } else {
                     usedTwo = true
                 }
-            } else if (count % 3 != 0) {
-                return false
             }
-            i = j
         }
 
         return usedTwo
