@@ -1,26 +1,25 @@
 package leetcode._1957
 
 class Solution {
+
     fun makeFancyString(s: String): String {
-        val sb = StringBuilder()
+        val a = CharArray(s.length)
+        var sz = 0
+        a[sz++] = s[0]
+        var cnt = 1
 
-        var prev = s[0]
-        sb.append(prev)
-        var count = 1
-
-        for (index in 1 until s.length) {
-            if (prev == s[index]) {
-                count++
-                if (count < 3) {
-                    sb.append(s[index])
+        for (i in 1 until s.length) {
+            if (s[i] == s[i - 1]) {
+                cnt++
+                if (cnt < 3) {
+                    a[sz++] = s[i]
                 }
             } else {
-                sb.append(s[index])
-                count = 1
+                cnt = 1
+                a[sz++] = s[i]
             }
-            prev = s[index]
         }
 
-        return sb.toString()
+        return String(a, 0, sz)
     }
 }
