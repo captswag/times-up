@@ -3,24 +3,20 @@ package refresh._3005
 class Solution {
 
     fun maxFrequencyElements(nums: IntArray): Int {
-        val freq = IntArray(101)
+        val cnt = IntArray(101)
         var mx = 0
+        var ans = 0
 
-        for (num in nums) {
-            freq[num]++
-            if (freq[num] > mx) {
-                mx = freq[num]
+        for (x in nums) {
+            cnt[x]++
+            if (cnt[x] > mx) {
+                mx = cnt[x]
+                ans = mx
+            } else if (cnt[x] == mx) {
+                ans += mx
             }
         }
 
-        var tot = 0
-
-        for (f in freq) {
-            if (f == mx) {
-                tot += f
-            }
-        }
-
-        return tot
+        return ans
     }
 }
