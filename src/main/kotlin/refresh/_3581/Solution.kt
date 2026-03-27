@@ -3,27 +3,25 @@ package refresh._3581
 class Solution {
 
     fun countOddLetters(n: Int): Int {
-        val sb = StringBuilder()
         var x = n
+        val cnt = IntArray(26)
 
-        while (x != 0) {
-            sb.append(digitToWord(x % 10))
+        while (x > 0) {
+            val s = digitToWord(x % 10)
+            for (c in s) {
+                cnt[c - 'a']++
+            }
             x /= 10
         }
 
-        val freq = IntArray(26)
-        for (c in sb) {
-            freq[c - 'a']++
-        }
-
-        var cnt = 0
-        for (f in freq) {
-            if (f and 1 == 1) {
-                cnt++
+        var ans = 0
+        for (i in cnt.indices) {
+            if (cnt[i] and 1 == 1) {
+                ans++
             }
         }
 
-        return cnt
+        return ans
     }
 
     private fun digitToWord(d: Int): String {
