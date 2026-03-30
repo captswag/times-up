@@ -3,19 +3,15 @@ package refresh._1196
 class Solution {
 
     fun maxNumberOfApples(weight: IntArray): Int {
-        var totalWeight = 5000
+        var rem = 5000
+        var i = 0
         weight.sort()
 
-        var index = 0
-        while (index < weight.size) {
-            totalWeight -= weight[index]
-            if (totalWeight > -1) {
-                index++
-            } else {
-                break
-            }
+        while (rem > 0 && i < weight.size && weight[i] <= rem) {
+            rem -= weight[i]
+            i++
         }
 
-        return index
+        return i
     }
 }
