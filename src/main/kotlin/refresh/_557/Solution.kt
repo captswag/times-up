@@ -3,25 +3,25 @@ package refresh._557
 class Solution {
 
     fun reverseWords(s: String): String {
-        val a = s.toCharArray()
         var i = 0
+        val a = s.toCharArray()
 
         while (i < a.size) {
-            var k = i + 1
-            while (k < a.size && a[k] != ' ') {
-                k++
-            }
-
-            var j = k - 1
-            while (i < j) {
-                val temp = a[i]
-                a[i] = a[j]
-                a[j] = temp
+            var l = i
+            while (i < a.size && a[i] != ' ') {
                 i++
-                j--
             }
 
-            i = k + 1
+            var r = i - 1
+            while (l < r) {
+                val tmp = a[l]
+                a[l] = a[r]
+                a[r] = tmp
+                l++
+                r--
+            }
+
+            i++
         }
 
         return String(a)
