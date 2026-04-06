@@ -1,22 +1,22 @@
 package leetcode._434
 
 class Solution {
-    fun countSegments(s: String): Int {
-        var segments = 0
-        var index = 0
 
-        while (index < s.length) {
-            if (s[index] == ' ') {
-                index++
+    fun countSegments(s: String): Int {
+        var i = 0
+        var cnt = 0
+
+        while (i < s.length) {
+            if (s[i] == ' ') {
+                i++
             } else {
-                segments++
-                index++
-                while (index < s.length && s[index] != ' ') {
-                    index++
+                while (i < s.length && s[i] != ' ') {
+                    i++
                 }
+                cnt++
             }
         }
 
-        return segments
+        return cnt
     }
 }
